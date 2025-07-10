@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Jarvis</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+	<style>
+		html, body {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			overflow: hidden;
+		}
+		iframe {
+			display: block;
+			width: 100%;
+			height: 100%;
+			border: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="container"></div>
+	<script>
+		const urlParams = new URLSearchParams(window.location.search);
+		const contentID = urlParams.get('id');
+		if (contentID) {
+			const iframe = document.createElement('iframe');
+			iframe.src = 'https://www.chatbase.co/chatbot-iframe/'+contentID;
+			iframe.width = "100%";
+			iframe.height = "100%";
+			iframe.style = "min-height: 700px;";
+			iframe.frameBorder = "0";
+			document.getElementById('container').appendChild(iframe);
+		} else {
+			document.getElementById('container').innerHTML = 
+				"<p>No ID specified in URL. Add ?id=YOUR_ID to the URL.</p>";
+		}
+	</script>
+</body>
+</html>
